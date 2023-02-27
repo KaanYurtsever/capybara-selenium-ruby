@@ -8,23 +8,23 @@ jobs:
         name: Check out repository code
         uses: actions/checkout@v3
       -
-        name: 'Create docker-compose file'
-        run: cp .docker/docker-compose.dev.yml docker-compose.yml
+        name: 'Create docker-compose.yml file'
+        run: cp .docker/docker-compose.yml.dev.yml docker-compose.yml.yml
       -
         name: 'Create env file'
         run: cp .docker/env_files/.env.dev .docker/env_files/.env
       -
         name: Build web container
-        run: docker-compose build web selenium
+        run: docker-compose.yml build web selenium
       -
         name: 'Create database'
-        run: docker-compose run --rm web bin/rails db:create db:migrate
+        run: docker-compose.yml run --rm web bin/rails db:create db:migrate
       -
         name: 'Start container'
-        run: docker-compose up -d web selenium
+        run: docker-compose.yml up -d web selenium
       -
         name: 'Run unit tests'
-        run: docker-compose exec -T web bin/rails test
+        run: docker-compose.yml exec -T web bin/rails test
       -
         name: 'Run system tests'
-        run: docker-compose exec -T web bin/rails test:system
+        run: docker-compose.yml exec -T web bin/rails test:system
