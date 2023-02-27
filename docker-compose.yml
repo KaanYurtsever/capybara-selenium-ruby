@@ -6,7 +6,7 @@ services:
     #image: seleniarm/standalone-chromium
 
     # Chrome is crashing for me so I'm using firefox for now
-    image: seleniarm/standalone-chrome
+    image: seleniarm/standalone-chromium
 
     ports:
       - "5900:5900" #for VNC access
