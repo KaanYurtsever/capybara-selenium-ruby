@@ -1,0 +1,3 @@
+web: PLATFORM=web -r features/step_definitions -r features/support -r pages
+html_report: --format progress --format html --out=test_results.html
+default: "--format pretty --format AllureCucumber::CucumberFormatter --out allure-results"
