@@ -15,5 +15,3 @@ COPY Gemfile* /app/
 
 #install the gems
 RUN bundle
-
-CMD cucumber

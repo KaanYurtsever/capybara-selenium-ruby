@@ -1,19 +1,17 @@
 version: '3'
+
 services:
   browser:
-
-    #use for Apple Silicon
-    #image: seleniarm/standalone-chromium
-
-    # Chrome is crashing for me so I'm using firefox for now
-    image: seleniarm/standalone-chromium
-
+    image: selenium/standalone-chrome:latest
     ports:
-      - "5900:5900" #for VNC access
-      - "4444:4444" #for webdriver access
-      - "7900:7900" #for web VNC access
+      - "4444:4444"
+      - "5900:5900"
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+      - JAVA_OPTS=-Dwebdriver.chrome.whitelistedIps=
 
-  ruby:
+  app:
     build: .
     volumes:
       - .:/app
@@ -22,3 +20,33 @@ services:
     environment:
       - SELENIUM_HOST=browser
       - SELENIUM_PORT=4444
+      - BROWSER=chrome
+      - HEADLESS=true # set this to false if you want to see the tests running in the browser
+    command: bash -c "bundle install && bundle exec cucumber"
+
+
+#version: '3'
+#
+#services:
+#  browser:
+#    image: selenium/standalone-firefox:latest
+#    ports:
+#      - "4444:4444"
+#      - "5900:5900"
+#    environment:
+#      - SCREEN_WIDTH=1920
+#      - SCREEN_HEIGHT=1080
+#      - JAVA_OPTS=-Dwebdriver.gecko.driver=/usr/bin/geckodriver
+#
+#  app:
+#    build: .
+#    volumes:
+#      - .:/app
+#    depends_on:
+#      - browser
+#    environment:
+#      - SELENIUM_HOST=browser
+#      - SELENIUM_PORT=4444
+#      - BROWSER=firefox
+#      - HEADLESS=true # set this to false if you want to see the tests running in the browser
+#    command: bash -c "bundle install && bundle exec cucumber"

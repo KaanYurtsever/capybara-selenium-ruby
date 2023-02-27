@@ -13,5 +13,5 @@ Feature: login with desired credentials for istegelsin page
   @second
   Scenario: User logins to the homepage unsuccessfully
     When User logins with "5555555554"
-    Then User writes to the OTP field with wrong OTP "1234"
+    Then User writes to the OTP field with wrong OTP "1111"
     And User sees that couldnt login successfully
