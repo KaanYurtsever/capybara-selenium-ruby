@@ -1,5 +1,5 @@
 Before do |scenario|
-  options = Selenium::WebDriver::Chrome::Options.new
+  options = Selenium::WebDriver::Chrome::Options.new     #sets some options to configure the Chrome driver. These options include starting the browser in maximized mode, disabling popup blocking, and ignoring certificate errors.
   options.add_argument('--start-maximized')
   options.add_argument('--disable-popup-blocking')
   options.add_argument('--ignore-certificate-errors')
@@ -23,7 +23,7 @@ After do |scenario|
 
     # https://github.com/allure-framework/allure-ruby/tree/master/allure-cucumber
     Allure.add_attachment(name: "Fail Screenshot", source: File.open("#{screenshot}"), type: Allure::ContentType::PNG, test_case: true)
-
+    #This adds the screenshot file as an attachment to the Allure report. The report is used to display the results of the test run.
   else
     puts("Test Passed")
   end
