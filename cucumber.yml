@@ -1,3 +1,13 @@
 web: PLATFORM=web -r features/step_definitions -r features/support -r pages
+#-r features/step_definitions: This specifies the directory where your step definitions are located. This allows Cucumber to find and load your step definitions.
+#-r features/support: This specifies the directory where your support code is located. This could include things like helper functions or custom World classes.
+#-r pages: This specifies the directory where your page object classes are located. Page objects are a design pattern used in automated testing to represent pages
+  #or components of a web application.
 html_report: --format progress --format html --out=test_results.html
+#--format progress: This option specifies that the test results should be output as a progress bar in the console.
+#--format html: This option specifies that an HTML report should be generated for the test results.
+#--out=test_results.html: This option specifies the name and location of the HTML report that will be generated.
+
+#cucumber --profile html_report  with this command generate an HTML report of the test results.
+
 default: "--format pretty --format AllureCucumber::CucumberFormatter --out allure-results"
